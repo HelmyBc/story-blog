@@ -1,0 +1,118 @@
+<?php
+require_once('config.php');
+session_start();
+if (!isset($_SESSION["username"])) {
+    header("location:index.php");
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feed</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./stylefeed.css" />
+</head>
+
+<body style="background-image: url('library.jpg'); background-repeat: no-repeat;background-size: cover;">
+    <main>
+        <section class="glass">
+            <div class="dashboard">
+                <div class="user">
+                    <img src="default_profile_image.png" alt="" style="height: 90px; width:90px;border-radius:50%;" />
+                    <h3> <?php echo $_SESSION['username']; ?></h3>
+                    <p>User type : Admin</p>
+                    <a href="logout.php">Logout</a>
+                </div>
+                <div class="links">
+                    <div class="link">
+                        <h2> <a class="link_a" href="admin_feed.php" style="text-decoration: none;"> Discover Stories </a></h2>
+                    </div>
+                    <div class="link">
+                        <h2> <a class="link_a" href="review_stories.php" style="text-decoration: none;"> Review Stories </a></h2>
+                    </div>
+
+                </div>
+                <div class="pro">
+                    <h2>Become a gold member for free stories.</h2>
+                    <img src="vip.jpg" style="height: 60px; width:60px;border-radius:50%;" alt="" />
+                </div>
+            </div>
+            <div class="games">
+                <div class="status">
+                    <h1>Review Stories</h1>
+                </div>
+                <div>
+                    <div class="card">
+                        <div class="card-table">
+                            <h2>Pending Stories </h2>
+                            <br>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Summary</th>
+                                        <th>Category</th>
+                                        <th>Author</th>
+                                        <th>file</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $sql6 = "SELECT * FROM stories WHERE is_approuved=0";
+                                    $result = $conn->query($sql6);
+                                    if (!$result) {
+                                        die("invalid query: " . $conn->error);
+                                    }
+                                    //read data of each row
+                                    while ($row = $result->fetch_assoc()) {
+
+                                        // function approve($conn, $id)
+                                        // {
+                                        //     $sql5 = "UPDATE stories SET is_approuved=1 WHERE id='$id'";
+                                        //     if (mysqli_query($conn, $sql5)) {
+                                        //         echo "Story is public now";
+                                        //     } else {
+                                        //         echo "Error updating record: " . mysqli_error($conn);
+                                        //     }
+                                        // }
+                                        $file = "uploads/" . $row['file'];
+                                        $id = $row['id'];
+
+
+                                        echo "<form action'#' method='POST'><tr>
+                                        <td>" . $row['id'] . "</td>
+                                        <td>" . $row['title'] . "</td>
+                                        <td>" . $row['summary'] . "</td>
+                                        <td>" . $row['category'] . "</td>
+                                        <td>" . $row['author'] . "</td>
+                                        <td>" . $row['file'] . "</td>
+                                        <td>
+                                            <a name='approuve' href='approve.php?file=" . $row['id'] . "'>Approve</a>
+                                            <a href='$file'>Download</a>
+                                            <a name='approuve' href='delete.php?file=" . $row['id'] . "'>Delete</a>
+                                        </td>
+                                    </tr></form>";
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
