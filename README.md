@@ -10,7 +10,7 @@
 ![image](https://user-images.githubusercontent.com/80924075/166116091-532c4cf8-f008-45fa-a6b4-f891e8a4f9a6.png)
 
 # We create our first story
-![image](https://user-images.githubusercontent.com/80924075/166116119-3eb85897-3c62-4917-9009-3081f08a8200.png)
+![image](https://user-images.githubusercontent.com/80924075/166116404-67a1a740-a87a-48b8-b75e-247ebab91531.png)
 
 # Now it is pending
 ![image](https://user-images.githubusercontent.com/80924075/166116168-90eb32fb-9ac0-4a78-8a01-19c3a71aa93f.png)
