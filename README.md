@@ -1,4 +1,4 @@
-﻿# story-blog Video preeview
+﻿# story-blog preview
  ## Let's create an account and sign in as an Author
  
 ![image](https://user-images.githubusercontent.com/80924075/166116069-1d6c850c-525d-4856-9cc2-64ee72dd03e4.png)
